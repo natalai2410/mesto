@@ -1,8 +1,9 @@
 .btn_add {
 	width: 150px;
 	height: 50px;
-	background-repeat: no-repeat;
-	background-image: url("data:image/svg+xml,%3Csvg width='150' height='50' viewBox='0 0 150 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='148' height='48' rx='1' stroke='white' stroke-width='2'/%3E%3Cpath d='M86 23.7778H76.2222V14H73.7778V23.7778H64V26.2222H73.7778V36H76.2222V26.2222H86V23.7778Z' fill='white'/%3E%3C/svg%3E%0A");
+	outline: none; /* Для синий ободки */
+	border: 0;
+	background: transparent url("data:image/svg+xml,%3Csvg width='150' height='50' viewBox='0 0 150 50' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='148' height='48' rx='1' stroke='white' stroke-width='2'/%3E%3Cpath d='M86 23.7778H76.2222V14H73.7778V23.7778H64V26.2222H73.7778V36H76.2222V26.2222H86V23.7778Z' fill='white'/%3E%3C/svg%3E%0A") no-repeat;
 	transition: opacity 0.3s ease;
 	opacity: 1;
 }
@@ -17,10 +18,6 @@
 		width: 100%;
 		height: 50px;
 		border: 2px solid white;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 7.11111H8.88889V0H7.11111V7.11111H0V8.88889H7.11111V16H8.88889V8.88889H16V7.11111Z' fill='white'/%3E%3C/svg%3E%0A");
+		background: transparent url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 7.11111H8.88889V0H7.11111V7.11111H0V8.88889H7.11111V16H8.88889V8.88889H16V7.11111Z' fill='white'/%3E%3C/svg%3E%0A") no-repeat center;
 	}
 }
-
-
