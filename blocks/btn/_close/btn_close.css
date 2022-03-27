@@ -1,0 +1,22 @@
+.btn_close {
+	width: 32px;
+	height: 32px;
+	outline: none;
+	border: 0;
+	background: transparent url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 28.8L19.2 16L32 3.2L28.8 0L16 12.8L3.2 0L0 3.2L12.8 16L0 28.8L3.2 32L16 19.2L28.8 32L32 28.8Z' fill='white'/%3E%3C/svg%3E%0A") no-repeat;
+	transition: opacity 0.3s ease;
+	opacity: 1;
+}
+
+.btn_close:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+@media (max-width: 800px) {
+	.btn_close {
+		width: 20px;
+		height: 20px;
+		background: transparent url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 18L12 10L20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18Z' fill='white'/%3E%3C/svg%3E%0A");
+	}
+}
