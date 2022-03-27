@@ -4,6 +4,14 @@
 	align-items: center;
 }
 
+@media screen and  (max-width: 800px) {
+	.avatar {
+		flex-direction: column;
+		justify-content: center;
+		margin-bottom: 36px;
+	}
+}
+
 
 
 

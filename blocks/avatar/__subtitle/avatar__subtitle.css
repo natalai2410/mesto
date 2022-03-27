@@ -1,4 +1,4 @@
-.avatar__subtitle{
+.avatar__subtitle {
 	grid-area: "subtitle";
 	font-size: 18px;
 	font-style: normal;
@@ -7,4 +7,13 @@
 	letter-spacing: 0;
 	text-align: left;
 	margin-top: 16px;
+}
+
+@media screen and  (max-width: 800px) {
+	.avatar__subtitle {
+		margin-top: 14px;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: center;
+	}
 }

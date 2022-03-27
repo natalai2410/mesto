@@ -8,5 +8,15 @@
 	line-height: 48px;
 	letter-spacing: 0;
 	text-align: left;
-	min-width: 294px;
+}
+
+
+
+@media screen and  (max-width: 800px) {
+	.avatar__title{
+		padding-right: 10px;
+		font-size: 27px;
+		line-height: 33px;
+		text-align: center;
+	}
 }

@@ -2,7 +2,12 @@
 	height: 100%;
 	margin-left: 24px;
 	display: grid;
-	grid-template-areas:
-			"title btn"
-			"subtitle subtitle";
+	grid-template-areas: "title btn" "subtitle subtitle";
+}
+
+@media screen and  (max-width: 800px) {
+	.avatar__text {
+		justify-items: center;
+		margin-top: 22px;
+	}
 }

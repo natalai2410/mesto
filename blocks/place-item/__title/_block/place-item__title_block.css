@@ -1,0 +1,5 @@
+.place-item__title_block {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

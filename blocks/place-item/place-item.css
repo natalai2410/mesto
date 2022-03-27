@@ -1,7 +1,4 @@
-.place-item{
-	border: 1px solid white;
+.place-item {
 	width: 100%;
 	list-style: none;
-	border-radius: 10px;
-	overflow: hidden;
 }
