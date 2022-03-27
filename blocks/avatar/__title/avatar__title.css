@@ -1,0 +1,12 @@
+.avatar__title{
+	grid-area: "title";
+	margin: 0;
+	padding: 0 18px 0 0;
+	font-size: 42px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 48px;
+	letter-spacing: 0;
+	text-align: left;
+	min-width: 294px;
+}

@@ -1,0 +1,6 @@
+.place-item__image{
+	width: 100%;
+	object-fit: cover;
+	padding: 0;
+	margin: 0;
+}

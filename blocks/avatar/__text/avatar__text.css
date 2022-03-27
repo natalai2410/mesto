@@ -1,0 +1,8 @@
+.avatar__text {
+	height: 100%;
+	margin-left: 24px;
+	display: grid;
+	grid-template-areas:
+			"title btn"
+			"subtitle subtitle";
+}
