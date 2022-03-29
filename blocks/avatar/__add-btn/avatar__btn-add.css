@@ -1,4 +1,4 @@
-.btn_add {
+.avatar__btn-add {
 	width: 150px;
 	height: 50px;
 	outline: none; /* Для синий ободки */
@@ -8,13 +8,13 @@
 	opacity: 1;
 }
 
-.btn_add:hover {
+.avatar__btn-add:hover {
 	opacity: 0.6;
 	cursor: pointer;
 }
 
 @media screen and  (max-width: 800px) {
-	.btn_add {
+	.avatar__btn-add {
 		width: 100%;
 		height: 50px;
 		border: 2px solid white;
