@@ -15,7 +15,7 @@
 @import url(../blocks/avatar/__title/avatar__title.css);
 @import url(../blocks/avatar/__text/avatar__text.css);
 @import url(../blocks/avatar/__image/avatar__image.css);
-@import url(../blocks/avatar/__add-btn/avatar__btn-add.css);
+@import url(../blocks/avatar/__add-btn/avatar__add-btn.css);
 
 @import url(../blocks/places/places.css);
 @import url(../blocks/places/__list/places__list.css);
