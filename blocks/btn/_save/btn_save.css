@@ -21,8 +21,9 @@
 
 @media (max-width: 800px) {
 	.btn_save {
-		padding: 14px 82px;
+		padding: 14px 42px;
 		font-size: 14px;
 		line-height: 17px;
+		text-align: center;
 	}
 }

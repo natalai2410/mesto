@@ -1,4 +1,4 @@
-.place-item__title_block {
+.block {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;

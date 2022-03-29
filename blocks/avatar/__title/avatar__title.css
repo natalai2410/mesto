@@ -10,13 +10,12 @@
 	text-align: left;
 }
 
-
-
 @media screen and  (max-width: 800px) {
 	.avatar__title{
 		padding-right: 10px;
 		font-size: 27px;
 		line-height: 33px;
 		text-align: center;
+		max-width: 238px;
 	}
 }

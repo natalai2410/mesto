@@ -6,29 +6,8 @@
 	<link href="page/index.css" rel="stylesheet">
 	<title>Mesto</title>
 </head>
-<body class="page page_popup-active">
-<div class="popup__container">
-	<div class="popup__content">
-		<div class="popup__btn-close">
-			<button class="btn_close"></button>
-		</div>
-			<div class="popup__title">Редактировать профиль</div>
-			<div class="popup__input">
-				<label>
-					<input class="field-input" type="text" value="Жак-Ив Кусто">
-				</label>
-			</div>
-			<div class="popup__input">
-				<label>
-					<input class="field-input" type="text" value="Исследователь океана">
-				</label>
-			</div>
-			<div class="popup__btn">
-				<button class="btn_save">Сохранить</button>
-			</div>
-		</div>
-</div>
-<div class="popup"></div>
+<body class="page">
+
 <header class="header">
 	<div class="container">
 		<div class="logo"></div>
@@ -40,11 +19,11 @@
 		<div class="avatar">
 			<img src="./images/Jacques-Yves Cousteau.png" alt="Жак-Ив Кусто" class="avatar__image">
 			<div class="avatar__text">
-				<h1 class="avatar__title">Жак-Ив Кусто</h1>
+				<h1 class="avatar__title block">Жак-Ив Кусто</h1>
 				<div class="avatar__edit-btn">
 					<button class="btn_edit"></button>
 				</div>
-				<div class="avatar__subtitle">Исследователь океана</div>
+				<div class="avatar__subtitle block">Исследователь океана</div>
 			</div>
 		</div>
 		<button class="btn_add"></button>
@@ -57,7 +36,7 @@
 				<div class="place-item__group">
 					<img src="./images/_item1.png" class="place-item__image" alt="Карачаевск"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Карачаевск</h2>
+						<h2 class="place-item__title block">Карачаевск</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
@@ -67,7 +46,7 @@
 				<div class="place-item__group">
 					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Гора Эльбрус</h2>
+						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
@@ -77,7 +56,7 @@
 				<div class="place-item__group">
 					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Гора Эльбрус</h2>
+						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
@@ -87,7 +66,7 @@
 				<div class="place-item__group">
 					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Гора Эльбрус</h2>
+						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
@@ -97,7 +76,7 @@
 				<div class="place-item__group">
 					<img src="./images/_item3.png" class="place-item__image" alt="Карачаевск"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Домбай</h2>
+						<h2 class="place-item__title block">Домбай</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
@@ -107,8 +86,9 @@
 				<div class="place-item__group">
 					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
 					<div class="place-item__content">
-						<h2 class="place-item__title place-item__title_block">Гора Эльбрус</h2>
-						<div class="place-item__like"></div>
+						<h2 class="place-item__title block">Гора Эльбрус</h2>
+						<div class="place-item__like">
+						</div>
 					</div>
 				</div>
 			</li>
@@ -120,5 +100,30 @@
 		<p class="footer__copyright">© 2020 Mesto Russia</p>
 	</div>
 </footer>
+
+<div class="popup">
+	<div class="popup__content">
+		<div class="popup__btn-close">
+			<button class="btn_close"></button>
+		</div>
+		<div class="popup__title">Редактировать профиль</div>
+		<form class="popup__form">
+			<div class="popup__input">
+				<label>
+					<input class="field-input" type="text" placeholder="" id="input-1">
+				</label>
+			</div>
+			<div class="popup__input">
+				<label>
+					<input class="field-input" type="text" placeholder="" id="input-2">
+				</label>
+			</div>
+			<div class="popup__btn">
+				<button class="btn_save" type="submit">Сохранить</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script src="scripts/index.js"></script>
 </body>
 </html>
