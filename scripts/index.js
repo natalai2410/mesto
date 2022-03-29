@@ -1,4 +1,4 @@
-const popupOpen = document.querySelector('.avatar__edit-btn');
+const popupOpen = document.querySelector('.avatar__btn-edit');
 const popupClose = document.querySelector('.popup__btn-close');
 
 const popupOpened = document.querySelector('.popup');

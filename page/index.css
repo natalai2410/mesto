@@ -10,12 +10,12 @@
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/avatar/avatar.css);
-@import url(../blocks/avatar/__edit-btn/avatar__edit-btn.css);
+@import url(../blocks/avatar/__btn-edit/avatar__btn-edit.css);
 @import url(../blocks/avatar/__subtitle/avatar__subtitle.css);
 @import url(../blocks/avatar/__title/avatar__title.css);
 @import url(../blocks/avatar/__text/avatar__text.css);
 @import url(../blocks/avatar/__image/avatar__image.css);
-@import url(../blocks/avatar/__add-btn/avatar__add-btn.css);
+@import url(../blocks/avatar/__btn-add/avatar__btn-add.css);
 
 @import url(../blocks/places/places.css);
 @import url(../blocks/places/__list/places__list.css);
