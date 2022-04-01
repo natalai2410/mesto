@@ -7,115 +7,95 @@
 	<title>Mesto</title>
 </head>
 <body class="page">
-
 <header class="header">
-	<div class="container">
-		<div class="logo"></div>
-	</div>
+	<div class="logo"></div>
 </header>
-
-<div class="container">
+<main class="content">
 	<section class="profile">
-		<div class="avatar">
-			<img src="./images/Jacques-Yves_Cousteau.png" alt="Жак-Ив Кусто" class="avatar__image">
-			<div class="avatar__text">
-				<h1 class="avatar__title block">Жак-Ив Кусто</h1>
-				<button class="avatar__btn-edit" type="button"></button>
-				<div class="avatar__subtitle block">Исследователь океана</div>
+		<div class="profile__avatar">
+			<img src="./images/Jacques-Yves_Cousteau.png" alt="Жак-Ив Кусто" class="profile__image">
+			<div class="profile__text">
+				<h1 class="profile__title block">Жак-Ив Кусто</h1>
+				<button class="profile__btn-edit" type="button"></button>
+				<h3 class="profile__subtitle block">Исследователь океана</h3>
 			</div>
 		</div>
 		<button class="profile__btn-add" type="button"></button>
 	</section>
-
 	<section class="places">
 		<ul class="places__list">
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item1.png" class="place-item__image" alt="Карачаевск"/>-->
+					<img src="./images/_item1.png" class="place-item__image" alt="Карачаевск"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Карачаевск</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
+					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
+					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
+					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Гора Эльбрус</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item3.png" class="place-item__image" alt="Карачаевск"/>-->
+					<img src="./images/_item3.png" class="place-item__image" alt="Карачаевск"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Домбай</h2>
 						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
-
 			<li class="place-item">
 				<div class="place-item__group">
-					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>-->
+					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>
 					<div class="place-item__content">
 						<h2 class="place-item__title block">Гора Эльбрус</h2>
-						<div class="place-item__like">
-						</div>
+						<div class="place-item__like"></div>
 					</div>
 				</div>
 			</li>
 		</ul>
 	</section>
-</div>
+</main>
 <footer class="footer">
-	<div class="container">
-		<p class="footer__copyright">© 2020 Mesto Russia</p>
-	</div>
+	<p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
-
 <div class="popup">
 	<div class="popup__content">
-		<button class="popup__btn-close" type="button">
-		</button>
+		<button class="popup__btn-close" type="button"></button>
 		<div class="popup__title">Редактировать профиль</div>
 		<form class="popup__form">
-			<div class="popup__input">
-				<label>
-					<input class="field-input" type="text" placeholder="" id="input-1">
-				</label>
-			</div>
-			<div class="popup__input">
-				<label>
-					<input class="field-input" type="text" placeholder="" id="input-2">
-				</label>
-			</div>
-				<button class="popup__btn-save" type="submit">Сохранить</button>
+			<label>
+				<input class="field-input" type="text" id="input-1" name='inputTitle'>
+			</label>
+			<label>
+				<input class="field-input" type="text" id="input-2" name='inputSubTitle'>
+			</label>
+			<button class="popup__btn-save" type="submit">Сохранить</button>
 		</form>
 	</div>
 </div>

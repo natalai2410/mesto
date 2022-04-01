@@ -1,8 +1,8 @@
 .field-input {
 	width: 100%;
 	background: rgba(255, 255, 255, 1);
-	padding-bottom: 13px;
 	padding-top: 13px;
+	padding-bottom: 13px;
 	color: black;
 	border-top: #FFFFFF;
 	border-left: #FFFFFF;
@@ -16,3 +16,6 @@
 	text-align: left;
 }
 
+#input-2 {
+	margin-top: 17px;
+}
