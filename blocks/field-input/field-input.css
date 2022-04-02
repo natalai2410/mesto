@@ -1,13 +1,10 @@
 .field-input {
 	width: 100%;
-	background: rgba(255, 255, 255, 1);
 	padding-top: 13px;
 	padding-bottom: 13px;
 	color: black;
-	border-top: #FFFFFF;
-	border-left: #FFFFFF;
-	border-right: #FFFFFF;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	border: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
@@ -16,6 +13,13 @@
 	text-align: left;
 }
 
-#input-2 {
-	margin-top: 17px;
+.field-input:last-child {
+	margin-top: 15px;
+	padding-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+	.field-input {
+		padding-bottom: 10px;
+	}
 }

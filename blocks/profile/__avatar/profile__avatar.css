@@ -7,8 +7,7 @@
 @media screen and (max-width: 800px){
 	.profile__avatar {
 		flex-direction: column;
-		column-gap: 0;
-		row-gap: 22px;
+		row-gap: 24px;
 	}
 }
 

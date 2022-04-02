@@ -7,37 +7,22 @@
 	border: 2px #fff solid;
 	box-sizing: border-box;
 	border-radius: 2px;
-	position: relative;
 	transition: opacity 0.3s ease;
 	cursor: pointer;
+	background-repeat: no-repeat;
+	background-image: url("../../../images/plus_d.svg");
+	background-position: center;
 }
 
 .profile__btn-add:hover {
 	opacity: 0.6;
 }
 
-.profile__btn-add::before {
-	content: '';
-	width: 22px;
-	height: 22px;
-	background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z' fill='white'/%3E%3C/svg%3E%0A");
-	background-position: center;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	position: absolute;
-	top: 12px;
-	left: 62px;
-}
-
 @media screen and (max-width: 800px) {
 	.profile__btn-add {
 		width: 282px;
 		height: 50px;
-		margin: 32px 0;
-	}
-
-	.profile__btn-add::before {
-		top: 15px;
-		left: 131px;
+		margin: 35px 0;
+		background-image: url("../../../images/add_mobile.svg");
 	}
 }

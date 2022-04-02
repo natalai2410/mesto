@@ -12,7 +12,7 @@
 	}
 }
 
-@media ( min-width: 801px) and (max-width: 1279px) {
+@media (min-width: 801px) and (max-width: 1279px) {
 	.content {
 		max-width: calc(100% - (50px * 2));
 	}

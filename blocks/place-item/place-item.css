@@ -1,4 +1,12 @@
 .place-item {
 	width: 100%;
 	list-style: none;
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+@media (max-width: 800px) {
+	.place-item {
+		margin-bottom: 20px;
+	}
 }
