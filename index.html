@@ -17,7 +17,7 @@
 			<div class="profile__text">
 				<h1 class="profile__title ellipsis-block">Жак-Ив Кусто</h1>
 				<button class="profile__btn-edit" type="button" aria-label="Редактировать информацию о профиле"></button>
-				<h3 class="profile__subtitle ellipsis-block">Исследователь океана</h3>
+				<p class="profile__subtitle ellipsis-block">Исследователь океана</p>
 			</div>
 		</div>
 		<button class="profile__btn-add" type="button" aria-label="Добавить новую карточку"></button>
@@ -62,7 +62,7 @@
 			<li class="place-item">
 					<img src="./images/_item2.png" class="place-item__image" alt="Гора Эльбрус"/>
 					<div class="place-item__content">
-						<h2 class="place-item__title ellipsis-block">Карачаево-Черке</h2>
+						<h2 class="place-item__title ellipsis-block">Карачаев</h2>
 						<button class="place-item__like" type="button" aria-label="Лайк"></button>
 					</div>
 			</li>
@@ -77,12 +77,8 @@
 		<button class="popup__btn-close" type="button" aria-label="Выйти из попапа"></button>
 		<h2 class="popup__title">Редактировать профиль</h2>
 		<form class="popup__form" name="popup-form">
-			<label>
-				<input class="field-input" type="text" id="input-1" name='inputTitle'>
-			</label>
-			<label>
-				<input class="field-input" type="text" id="input-2" name='inputSubTitle'>
-			</label>
+				<input class="popup__input" type="text" id="input-1" name='inputTitle'>
+				<input class="popup__input" type="text" id="input-2" name='inputSubTitle'>
 			<button class="popup__btn-save" type="submit">Сохранить</button>
 		</form>
 	</div>

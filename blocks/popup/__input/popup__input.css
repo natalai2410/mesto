@@ -1,7 +1,6 @@
-.field-input {
+.popup__input {
 	width: 100%;
-	padding-top: 13px;
-	padding-bottom: 13px;
+	padding: 7px 0;
 	color: black;
 	border: 0;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
@@ -11,15 +10,11 @@
 	line-height: 17px;
 	letter-spacing: 0;
 	text-align: left;
-}
-
-.field-input:last-child {
-	margin-top: 15px;
-	padding-bottom: 10px;
+	margin-top: 23px;
 }
 
 @media (max-width: 800px) {
-	.field-input {
+	.popup__input {
 		padding-bottom: 10px;
 	}
 }
