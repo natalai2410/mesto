@@ -21,7 +21,7 @@
 	}
 }
 
-.popup__btn-close:hover{
+.popup__btn-close:hover {
 	opacity: 0.6;
 	cursor: pointer;
 }
