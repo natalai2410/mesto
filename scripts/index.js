@@ -25,6 +25,7 @@ const initialCards = [
     }
 ];
 
+const page= document.querySelector('.page');
 const content = document.querySelector('.content');
 
 const profile = content.querySelector('.profile');
@@ -44,7 +45,7 @@ const popupPlace = popupAddCard.querySelector('.popup__input_place');
 const popupLink = popupAddCard.querySelector('.popup__input_link');
 const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
 const popupAddSaveButton = popupAddCard.querySelector('.popup__btn-save');
-const AddPlaceButton = document.querySelector('.profile__btn-add');
+const addPlaceButton = document.querySelector('.profile__btn-add');
 
 const popupView = document.querySelector('.popup_view-card');
 const popupImage = popupView.querySelector('.popup__image');
@@ -61,13 +62,17 @@ function loadCards() {
     listContainer.append(...html);
 }
 
+function pageToggleHidden() {
+    page.classList.toggle('page_hidden-scroll');
+}
+
 function clickLikeButton(e) {
     e.target.classList.toggle('place-item__like_active');
 }
 
 function clickDeleteCardButton(e) {
-    //e.target.removeEventListener('click', clickLikeButton);
-    e.target.parentElement.remove();
+    const el= e.target.closest('.place-item') ;
+    el.remove();
 }
 
 window.onload = function () {
@@ -99,7 +104,7 @@ function closeModalWindow(popup) {
 
 popupOpenButton.addEventListener('click', onLoad);
 
-AddPlaceButton.addEventListener('click', () => {
+addPlaceButton.addEventListener('click', () => {
     popupAddProfileForm.reset();
     openModalWindow(popupAddCard);
 });
@@ -113,7 +118,7 @@ popupAddCloseButton.addEventListener('click', () => {
 });
 
 popupViewCloseButton.addEventListener('click', () => {
-    document.querySelector(".page").style.overflowY = "inherit";
+    pageToggleHidden();
     closeModalWindow(popupView);
 });
 
@@ -121,7 +126,7 @@ function CardView(e) {
     popupImage.src = e.target.src;
     popupImage.alt = e.target.alt;
     popupTitle.textContent = e.target.alt;
-    document.querySelector(".page").style.overflowY = "hidden";
+    pageToggleHidden();
     openModalWindow(popupView);
 }
 
@@ -136,12 +141,12 @@ function createCard(name, link) {
     likeButton.addEventListener('click', clickLikeButton);
     const removeButton = newCard.querySelector('.place-item__bin');
     removeButton.addEventListener('click', clickDeleteCardButton);
-    const Card = newCard.querySelector('.place-item__image');
-    Card.addEventListener('click', CardView);
+    const card = newCard.querySelector('.place-item__image');
+    card.addEventListener('click', CardView);
     return newCard;
 }
 
-popupAddSaveButton.addEventListener('click', (e) => {
+popupAddSaveButton.addEventListener('summit', (e) => {
     e.preventDefault();
     listContainer.prepend(createCard(popupPlace.value, popupLink.value));
     closeModalWindow(popupAddCard);
