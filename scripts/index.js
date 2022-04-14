@@ -76,20 +76,20 @@ window.onload = function () {
     loadCards();
 };
 
-function onLoad() {
+function loadInputProfile() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
     openModalWindow(popupEditProfile);
 }
 
-function onProfileSave(e) {
+function saveInputProfile(e) {
     e.preventDefault();
     profileName.textContent = inputName.value;
     profileJob.textContent = inputJob.value;
     closeModalWindow(popupEditProfile);
 }
 
-popupEditProfileForm.addEventListener('submit', onProfileSave);
+popupEditProfileForm.addEventListener('submit', saveInputProfile);
 
 function openModalWindow(popup) {
     popup.classList.add('popup_opened');
@@ -99,7 +99,7 @@ function closeModalWindow(popup) {
     popup.classList.remove('popup_opened');
 }
 
-popupOpenButton.addEventListener('click', onLoad);
+popupOpenButton.addEventListener('click', loadInputProfile);
 
 buttonAddCard.addEventListener('click', () => {
     popupAddProfileForm.reset();
@@ -118,7 +118,7 @@ popupViewCloseButton.addEventListener('click', () => {
     closeModalWindow(popupView);
 });
 
-function cardView(e) {
+function viewCard(e) {
     popupImage.src = e.target.src;
     popupImage.alt = e.target.alt;
     popupTitle.textContent = e.target.alt;
@@ -137,7 +137,7 @@ function createCard(name, link) {
     const removeButton = newCard.querySelector('.place-item__bin');
     removeButton.addEventListener('click', clickDeleteCardButton);
     const card = newCard.querySelector('.place-item__image');
-    card.addEventListener('click', cardView);
+    card.addEventListener('click', viewCard);
     return newCard;
 }
 
