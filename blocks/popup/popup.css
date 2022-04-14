@@ -9,10 +9,8 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	height: 0;
 	z-index: 2;
 	opacity: 0;
-	transition-property: opacity, height;
-	transition-duration: 1s, 0s;
-	transition-delay: 0s, 1s;
+	transition: all .3s linear;
 }
+
