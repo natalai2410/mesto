@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const page= document.querySelector('.page');
+const page = document.querySelector('.page');
 const content = document.querySelector('.content');
 
 const profile = content.querySelector('.profile');
@@ -71,7 +71,7 @@ function clickLikeButton(e) {
 }
 
 function clickDeleteCardButton(e) {
-    const el= e.target.closest('.place-item') ;
+    const el = e.target.closest('.place-item');
     el.remove();
 }
 
