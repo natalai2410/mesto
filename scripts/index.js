@@ -50,10 +50,10 @@ const popupAddSaveButton = popupAddCard.querySelector('.popup__btn-save');
 const AddPlaceButton = document.querySelector('.profile__btn-add');
 
 
-const popupView = document.querySelector('.popup-view_card');
-const popupImage = popupView.querySelector('.place-item__image');
-const popupTitle = popupView.querySelector('.popup-view__title');
-const popupCloseButton = popupView.querySelector('.popup__btn-close');
+const popupView = document.querySelector('.popup_view-card');
+const popupImage = popupView.querySelector('.popup__image');
+const popupTitle = popupView.querySelector('.popup__caption');
+const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
 // для template
 const listContainer = document.querySelector('.places__list');
@@ -74,7 +74,7 @@ function clickLikeButton(e) {
 
 //корзина
 function clickDeleteCardButton(e) {
-    e.target.removeEventListener('click', clickLikeButton);
+    //e.target.removeEventListener('click', clickLikeButton);
     e.target.parentElement.remove();
 }
 
@@ -127,17 +127,19 @@ popupAddCloseButton.addEventListener('click', () => {
 });
 
 //закрытие попапа  редактирования карточки
-popupCloseButton.addEventListener('click', () => {
+popupViewCloseButton.addEventListener('click', () => {
+    document.querySelector(".page").style.overflowY = "inherit";
     closeModalWindow(popupView);
 });
 
 
 function CardView(e) {
+
     popupImage.src = e.target.src;
     popupImage.alt = e.target.alt;
-
     popupTitle.textContent = e.target.alt;
-   openModalWindow(popupView);
+    document.querySelector(".page").style.overflowY = "hidden";
+    openModalWindow(popupView);
 }
 
 //клонирование  template
@@ -149,6 +151,7 @@ function createCard(name, link) {
 
     title.textContent = name;
     imageUrl.src = link;
+    imageUrl.alt = name;
 
     const likeButton = newCard.querySelector('.place-item__like');
     likeButton.addEventListener('click', clickLikeButton);
@@ -156,7 +159,8 @@ function createCard(name, link) {
     const removeButton = newCard.querySelector('.place-item__bin');
     removeButton.addEventListener('click', clickDeleteCardButton);
 
-    newCard.addEventListener('click', CardView);
+    const Card = newCard.querySelector('.place-item');
+    Card.addEventListener('click', CardView);
 
     return newCard;
 }
