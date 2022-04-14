@@ -142,26 +142,19 @@ function CardView(e) {
     openModalWindow(popupView);
 }
 
-//клонирование  template
 function createCard(name, link) {
     const newCard = template.content.cloneNode(true);
     const title = newCard.querySelector('.place-item__title');
     const imageUrl = newCard.querySelector('.place-item__image');
-
-
     title.textContent = name;
     imageUrl.src = link;
     imageUrl.alt = name;
-
     const likeButton = newCard.querySelector('.place-item__like');
     likeButton.addEventListener('click', clickLikeButton);
-
     const removeButton = newCard.querySelector('.place-item__bin');
     removeButton.addEventListener('click', clickDeleteCardButton);
-
-    const Card = newCard.querySelector('.place-item');
+    const Card = newCard.querySelector('.place-item__image');
     Card.addEventListener('click', CardView);
-
     return newCard;
 }
 

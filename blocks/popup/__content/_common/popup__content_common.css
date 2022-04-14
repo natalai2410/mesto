@@ -6,7 +6,6 @@
 	background-color: white
 }
 
-
 @media (max-width: 800px) {
 	.popup__content_common {
 		padding: 27px 22px 25px;
