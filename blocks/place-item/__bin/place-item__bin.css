@@ -9,7 +9,7 @@
 	position: absolute;
 	z-index: 1;
 	right: 20px;
-	top: 20px
+	top: 20px;
 }
 
 .place-item__bin:hover {
