@@ -1,12 +1,6 @@
 .place-item {
 	margin: 0;
 	padding: 0;
-	display: flex;
-	flex-direction: column;
-	/*max-width: 282px;*/
-	/*max-height: 361px;*/
-	background-color: white;
-	border-radius: 10px;
 	cursor: pointer;
 	position: relative;
 	z-index: 0;

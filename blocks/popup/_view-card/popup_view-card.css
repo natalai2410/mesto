@@ -1,9 +1,6 @@
 .popup_view-card {
-	display: flex;
 	width: auto;
 	height: 100%;
 	border-radius: 0;
 	padding: 0;
-	justify-content: center;
-	align-items: center;
 }
