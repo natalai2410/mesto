@@ -1,5 +1,6 @@
 .popup {
-	display: none;
+	visibility: hidden;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -8,5 +9,36 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+	height: 0;
+	z-index: 2;
+	opacity: 0;
+	transition-property: opacity, height;
+	transition-duration: 1s, 0s;
+	transition-delay: 0s, 1s;
+}
+
+.popup-view_card {
+	display: flex;
+	margin: 0 auto;
+	width: auto;
+	height: 100%;
+	border-radius: 0;
+	padding: 0;
+	align-items: stretch;
+	justify-content: center;
+}
+
+.popup-view__title{
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 15px;
+	letter-spacing: 0;
+	text-align: left;
+}
+
+.popup__content_viewer{
+	width: 50%;
+	height: auto;
+	margin: auto auto;
 }
 
