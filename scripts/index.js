@@ -44,7 +44,6 @@ const popupAddProfileForm = popupAddCard.querySelector('.popup__form');
 const popupPlace = popupAddCard.querySelector('.popup__input_place');
 const popupLink = popupAddCard.querySelector('.popup__input_link');
 const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
-const popupAddSaveButton = popupAddCard.querySelector('.popup__btn-save');
 const buttonAddCard = document.querySelector('.profile__btn-add');
 
 const popupView = document.querySelector('.popup_view-card');
