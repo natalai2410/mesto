@@ -45,7 +45,7 @@ const popupPlace = popupAddCard.querySelector('.popup__input_place');
 const popupLink = popupAddCard.querySelector('.popup__input_link');
 const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
 const popupAddSaveButton = popupAddCard.querySelector('.popup__btn-save');
-const addPlaceButton = document.querySelector('.profile__btn-add');
+const buttonAddCard = document.querySelector('.profile__btn-add');
 
 const popupView = document.querySelector('.popup_view-card');
 const popupImage = popupView.querySelector('.popup__image');
@@ -62,9 +62,6 @@ function loadCards() {
     listContainer.append(...html);
 }
 
-function pageToggleHidden() {
-    page.classList.toggle('page_hidden-scroll');
-}
 
 function clickLikeButton(e) {
     e.target.classList.toggle('place-item__like_active');
@@ -104,7 +101,7 @@ function closeModalWindow(popup) {
 
 popupOpenButton.addEventListener('click', onLoad);
 
-addPlaceButton.addEventListener('click', () => {
+buttonAddCard.addEventListener('click', () => {
     popupAddProfileForm.reset();
     openModalWindow(popupAddCard);
 });
@@ -118,15 +115,13 @@ popupAddCloseButton.addEventListener('click', () => {
 });
 
 popupViewCloseButton.addEventListener('click', () => {
-    pageToggleHidden();
     closeModalWindow(popupView);
 });
 
-function CardView(e) {
+function cardView(e) {
     popupImage.src = e.target.src;
     popupImage.alt = e.target.alt;
     popupTitle.textContent = e.target.alt;
-    pageToggleHidden();
     openModalWindow(popupView);
 }
 
@@ -142,15 +137,17 @@ function createCard(name, link) {
     const removeButton = newCard.querySelector('.place-item__bin');
     removeButton.addEventListener('click', clickDeleteCardButton);
     const card = newCard.querySelector('.place-item__image');
-    card.addEventListener('click', CardView);
+    card.addEventListener('click', cardView);
     return newCard;
 }
 
-popupAddSaveButton.addEventListener('summit', (e) => {
+popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
     listContainer.prepend(createCard(popupPlace.value, popupLink.value));
     closeModalWindow(popupAddCard);
 });
+
+
 
 
 
