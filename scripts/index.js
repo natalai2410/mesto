@@ -50,6 +50,8 @@ const popupImage = popupView.querySelector('.popup__image');
 const popupTitle = popupView.querySelector('.popup__caption');
 const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
+const popups = document.querySelectorAll('.popup');
+
 const listContainer = document.querySelector('.places__list');
 const template = document.querySelector('.template');
 
@@ -91,10 +93,13 @@ popupEditProfileForm.addEventListener('submit', saveInputProfile);
 
 function openModalWindow(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', keyHandler);
 }
 
 function closeModalWindow(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', keyHandler);
+
 }
 
 popupOpenButton.addEventListener('click', loadInputProfile);
@@ -146,6 +151,23 @@ popupAddProfileForm.addEventListener('submit', (e) => {
 });
 
 
+function keyHandler(e) {
+    const key = e.key;
+    if (key === "Escape") {
+        const popup = document.querySelector('.popup_opened');
+        closeModalWindow(popup);
+    }
+}
 
+function overlayHandler(event, popup) {
+    if (event.target === event.currentTarget) {
+        closeModalWindow(popup)
+    }
+}
 
+popups.forEach(elementPopup => {
+    elementPopup.addEventListener('click', (event) => {
+        overlayHandler(event, elementPopup);
+    });
+});
 
