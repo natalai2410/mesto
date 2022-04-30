@@ -1,86 +1,58 @@
-// enableValidation({
-//     formSelector: '.popup__form',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'popup__error_visible'
-// });
+function showError(input, config) {
+    const errorElement = document.querySelector(`#${input.id}-error`);
 
+    errorElement.classList.add(config.errorClass);
+    input.classList.add(config.inputErrorClass);
+    errorElement.textContent = input.validationMessage;
+}
 
-//выбираем форму  с импутами, присваивем ей константу formElement
-const form = document.querySelector('.popup__form');
-// в formElement  выбираем импут
-const formInput = form.querySelector('.popup__input');
-//сообщения  оь ошибке
-//formError = formElement.querySelector(`.${formInput.id}-error`);
+function hideError(input, config) {
+    const errorElement = document.querySelector(`#${input.id}-error`);
 
-
-
-//функция showError передаёт событию input класс form__input_type_error, класс с ошибкой
-//входное  поле input формы   и сообщение  об ошибке
-const showError = (formElement, inputElement, errorMessage) => {
-
-    // Находим элемент ошибки внутри самой функции
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
-
-    //текст ошибки
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_visible');
-};
-
-//функция hideError передаёт событию input класс form__input_type_error, класс с ошибкой
-const hideError = (formElement, inputElement) => {
-
-    // Находим элемент ошибки
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__error_visible');
+    errorElement.classList.remove(config.errorClass);
+    input.classList.remove(config.inputErrorClass);
     errorElement.textContent = '';
-};
+}
 
-//фунция  проверяет поле  на ошибку
-const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {  //передаем input
-        // Если поле не проходит валидацию, покажем ошибку
-        showError(formElement, inputElement,  inputElement.validationMessage);
+function toggleButtonState(form, config) {
+    const button = form.querySelector(config.submitButtonSelector);
+    button.disabled = !form.checkValidity();
+    button.classList.toggle(config.inactiveButtonClass, !form.checkValidity());
+}
+
+function handleFormInput(input, form, config) {
+    if (!input.validity.valid) {
+        showError(input, config);
     } else {
-        // Если проходит, скроем
-        hideError(formElement, inputElement);
+        hideError(input, config);
     }
-};
+    toggleButtonState(form, config);
+}
 
-const setEventListeners = (formElement) => {
-    // Находим все поля внутри формы,
-    // сделаем из них массив методом Array.from
-
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement);
+function enableValidation(config) {
+    const forms = Array.from(document.querySelectorAll(config.formSelector));
+    forms.forEach(form => {
+        toggleButtonState(form, config);
+        form.addEventListener('input', (event) => {
+            handleFormInput(event.target, form, config);
         });
     });
-};
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-        setEventListeners(formElement);
-    });
-};
+}
 
-//enableValidation();
+function resetValidation(form, config) {
+    const inputs = form.querySelectorAll(config.inputSelector);
+    inputs.forEach(input => {
+        hideError(input, config);
+    });
+    toggleButtonState(form, config);
+}
 
 enableValidation({
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__save',
-    inactiveButtonClass: '.form__save_disabled',
-    inputErrorClass: '.form__input_type_error',
-    errorClass: '.form__error_visible'
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+    inactiveButtonClass: 'popup__btn-save_disabled',
+    submitButtonSelector: '.popup__btn-save'
 });
-
 

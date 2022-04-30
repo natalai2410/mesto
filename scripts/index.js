@@ -35,7 +35,7 @@ const popupOpenButton = profile.querySelector('.profile__btn-edit');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupEditProfileForm = popupEditProfile.querySelector('.popup__form');
 const inputName = popupEditProfile.querySelector('.popup__input_title');
-const inputJob = popupEditProfile.querySelector('.popup__input_subTitle');
+const inputJob = popupEditProfile.querySelector('.popup__input_job');
 const popupEditCloseButton = popupEditProfile.querySelector('.popup__btn-close');
 
 const popupAddCard = document.querySelector('.popup_new-card');
@@ -62,7 +62,6 @@ function loadCards() {
     listContainer.append(...html);
 }
 
-
 function clickLikeButton(e) {
     e.target.classList.toggle('place-item__like_active');
 }
@@ -79,6 +78,14 @@ window.onload = function () {
 function loadInputProfile() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
+    resetValidation(popupEditProfileForm, {
+        formSelector: '.popup__form',
+        inputSelector: '.popup__input',
+        inputErrorClass: 'popup__input_type_error',
+        errorClass: 'popup__error_visible',
+        inactiveButtonClass: 'popup__btn-save_disabled',
+        submitButtonSelector: '.popup__btn-save'
+    });
     openModalWindow(popupEditProfile);
 }
 
@@ -99,13 +106,20 @@ function openModalWindow(popup) {
 function closeModalWindow(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', keyHandler);
-
 }
 
 popupOpenButton.addEventListener('click', loadInputProfile);
 
 buttonAddCard.addEventListener('click', () => {
     popupAddProfileForm.reset();
+    resetValidation(popupAddProfileForm, {
+        formSelector: '.popup__form',
+        inputSelector: '.popup__input',
+        inputErrorClass: 'popup__input_type_error',
+        errorClass: 'popup__error_visible',
+        inactiveButtonClass: 'popup__btn-save_disabled',
+        submitButtonSelector: '.popup__btn-save'
+    });
     openModalWindow(popupAddCard);
 });
 
@@ -150,7 +164,6 @@ popupAddProfileForm.addEventListener('submit', (e) => {
     closeModalWindow(popupAddCard);
 });
 
-
 function keyHandler(e) {
     const key = e.key;
     if (key === "Escape") {
@@ -170,4 +183,5 @@ popups.forEach(elementPopup => {
         overlayHandler(event, elementPopup);
     });
 });
+
 
