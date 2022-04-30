@@ -100,12 +100,12 @@ popupEditProfileForm.addEventListener('submit', saveInputProfile);
 
 function openModalWindow(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', keyHandler);
+    document.addEventListener('keydown', pressEscKey);
 }
 
 function closeModalWindow(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', keyHandler);
+    document.removeEventListener('keydown', pressEscKey);
 }
 
 popupOpenButton.addEventListener('click', loadInputProfile);
@@ -164,7 +164,7 @@ popupAddProfileForm.addEventListener('submit', (e) => {
     closeModalWindow(popupAddCard);
 });
 
-function keyHandler(e) {
+function pressEscKey(e) {
     const key = e.key;
     if (key === "Escape") {
         const popup = document.querySelector('.popup_opened');
