@@ -1,4 +1,5 @@
 import Card from './card.js';
+import FormValidator from './formValidator.js';
 
 const initialCards = [
     {
@@ -26,6 +27,15 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+    inactiveButtonClass: 'popup__btn-save_disabled',
+    submitButtonSelector: '.popup__btn-save'
+};
 
 const content = document.querySelector('.content');
 
@@ -55,7 +65,12 @@ const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 const popups = document.querySelectorAll('.popup');
 
 const listContainer = document.querySelector('.places__list');
-//const template = document.querySelector('.template');
+
+const formAddValidator = new FormValidator(config, popupAddProfileForm);
+const formEditValidator = new FormValidator(config, popupEditProfileForm);
+
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
 
 function loadCards() {
     initialCards.forEach((item) => {
@@ -65,7 +80,6 @@ function loadCards() {
     });
 }
 
-
 window.onload = function () {
     loadCards();
 };
@@ -73,14 +87,7 @@ window.onload = function () {
 function loadInputProfile() {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
-    resetValidation(popupEditProfileForm, {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__input',
-        inputErrorClass: 'popup__input_type_error',
-        errorClass: 'popup__error_visible',
-        inactiveButtonClass: 'popup__btn-save_disabled',
-        submitButtonSelector: '.popup__btn-save'
-    });
+    formEditValidator.resetValidation();
     openModalWindow(popupEditProfile);
 }
 
@@ -107,14 +114,8 @@ popupOpenButton.addEventListener('click', loadInputProfile);
 
 buttonAddCard.addEventListener('click', () => {
     popupAddProfileForm.reset();
-    resetValidation(popupAddProfileForm, {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__input',
-        inputErrorClass: 'popup__input_type_error',
-        errorClass: 'popup__error_visible',
-        inactiveButtonClass: 'popup__btn-save_disabled',
-        submitButtonSelector: '.popup__btn-save'
-    });
+    formAddValidator.resetValidation();
+
     openModalWindow(popupAddCard);
 });
 
@@ -129,7 +130,6 @@ popupAddCloseButton.addEventListener('click', () => {
 popupViewCloseButton.addEventListener('click', () => {
     closeModalWindow(popupView);
 });
-
 
 popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
