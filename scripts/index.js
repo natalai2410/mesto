@@ -1,3 +1,5 @@
+import Card from './card.js';
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -45,31 +47,24 @@ const popupLink = popupAddCard.querySelector('.popup__input_link');
 const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
 const buttonAddCard = document.querySelector('.profile__btn-add');
 
-const popupView = document.querySelector('.popup_view-card');
-const popupImage = popupView.querySelector('.popup__image');
-const popupTitle = popupView.querySelector('.popup__caption');
+export const popupView = document.querySelector('.popup_view-card');
+export const popupImage = popupView.querySelector('.popup__image');
+export const popupTitle = popupView.querySelector('.popup__caption');
 const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
 const popups = document.querySelectorAll('.popup');
 
 const listContainer = document.querySelector('.places__list');
-const template = document.querySelector('.template');
+//const template = document.querySelector('.template');
 
 function loadCards() {
-    const html = initialCards.map((card) => {
-        return createCard(card.name, card.link);
+    initialCards.forEach((item) => {
+        const card = new Card(item.link, item.name);
+        const cardElement = card.generateCard();
+        document.querySelector('.places__list').append(cardElement);
     });
-    listContainer.append(...html);
 }
 
-function clickLikeButton(e) {
-    e.target.classList.toggle('place-item__like_active');
-}
-
-function clickDeleteCardButton(e) {
-    const el = e.target.closest('.place-item');
-    el.remove();
-}
 
 window.onload = function () {
     loadCards();
@@ -98,7 +93,7 @@ function saveInputProfile(e) {
 
 popupEditProfileForm.addEventListener('submit', saveInputProfile);
 
-function openModalWindow(popup) {
+export function openModalWindow(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', pressEscKey);
 }
@@ -135,32 +130,15 @@ popupViewCloseButton.addEventListener('click', () => {
     closeModalWindow(popupView);
 });
 
-function viewCard(e) {
-    popupImage.src = e.target.src;
-    popupImage.alt = e.target.alt;
-    popupTitle.textContent = e.target.alt;
-    openModalWindow(popupView);
-}
-
-function createCard(name, link) {
-    const newCard = template.content.cloneNode(true);
-    const title = newCard.querySelector('.place-item__title');
-    const imageUrl = newCard.querySelector('.place-item__image');
-    title.textContent = name;
-    imageUrl.src = link;
-    imageUrl.alt = name;
-    const likeButton = newCard.querySelector('.place-item__like');
-    likeButton.addEventListener('click', clickLikeButton);
-    const removeButton = newCard.querySelector('.place-item__bin');
-    removeButton.addEventListener('click', clickDeleteCardButton);
-    const card = newCard.querySelector('.place-item__image');
-    card.addEventListener('click', viewCard);
-    return newCard;
-}
 
 popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    listContainer.prepend(createCard(popupPlace.value, popupLink.value));
+
+    const card = new Card(popupLink.value, popupPlace.value );
+    const cardElement = card.generateCard();
+
+    listContainer.prepend(cardElement);
+
     closeModalWindow(popupAddCard);
 });
 
@@ -183,5 +161,6 @@ popups.forEach(elementPopup => {
         overlayHandler(event, elementPopup);
     });
 });
+
 
 
