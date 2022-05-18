@@ -35,7 +35,7 @@ export default class Card {
             this._binButtonClick();
         });
 
-        this._element.addEventListener('click', () => {
+        this._cardImage.addEventListener('click', () => {
             this._handleOpenPopup(this._link,this._name );
         });
     }
@@ -54,5 +54,4 @@ export default class Card {
 
         return this._element;
     }
-
 }

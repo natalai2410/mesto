@@ -82,7 +82,6 @@ window.onload = function () {
     loadCards();
 };
 
-
 function addCard(link, name) {
     const card = new Card(link, name, '#template-place-item');
     return card.generateCard();
