@@ -1,5 +1,5 @@
-import Card from './card.js';
-import FormValidator from './formValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const initialCards = [
     {
@@ -74,15 +74,20 @@ formEditValidator.enableValidation();
 
 function loadCards() {
     initialCards.forEach((item) => {
-        const card = new Card(item.link, item.name);
-        const cardElement = card.generateCard();
-        document.querySelector('.places__list').append(cardElement);
+        listContainer.append(addCard(item.link, item.name));
     });
 }
 
 window.onload = function () {
     loadCards();
 };
+
+
+function addCard(link, name) {
+    const card = new Card(link, name, '#template-place-item');
+    return card.generateCard();
+}
+
 
 function loadInputProfile() {
     inputName.value = profileName.textContent;
@@ -133,12 +138,7 @@ popupViewCloseButton.addEventListener('click', () => {
 
 popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    const card = new Card(popupLink.value, popupPlace.value );
-    const cardElement = card.generateCard();
-
-    listContainer.prepend(cardElement);
-
+    listContainer.prepend(addCard(popupLink.value, popupPlace.value));
     closeModalWindow(popupAddCard);
 });
 
