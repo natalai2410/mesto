@@ -1,6 +1,7 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const initialCards = [
     {
@@ -58,12 +59,19 @@ const popupLink = popupAddCard.querySelector('.popup__input_link');
 const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
 const buttonAddCard = document.querySelector('.profile__btn-add');
 
-export const popupView = document.querySelector('.popup_view-card');
-export const popupImage = popupView.querySelector('.popup__image');
-export const popupTitle = popupView.querySelector('.popup__caption');
+// делаем в  объект
+const popupViewConfig = {linkSelector: '.popup__image',  nameSelector: '.popup__caption'};
+
+//export const popupView = document.querySelector('.popup_view-card');
+ const popupView = new PopupWithImage('.popup_view-card', popupViewConfig); //что передать?
 
 
-const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
+
+// export const popupImage = popupView.querySelector('.popup__image');
+// export const popupTitle = popupView.querySelector('.popup__caption');
+
+
+// const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
 const popups = document.querySelectorAll('.popup');
 
@@ -84,7 +92,7 @@ formAddValidator.enableValidation();
 formEditValidator.enableValidation();
 
 function addCard(link, name) {
-    const card = new Card(link, name, '#template-place-item');
+    const card = new Card(link, name, '#template-place-item',  popupView.open);
     return card.generateCard();
 }
 
@@ -132,9 +140,9 @@ popupAddCloseButton.addEventListener('click', () => {
     closeModalWindow(popupAddCard);
 });
 
-popupViewCloseButton.addEventListener('click', () => {
-    closeModalWindow(popupView);
-});
+// popupViewCloseButton.addEventListener('click', () => {
+//     closeModalWindow(popupView);
+// });
 
 popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -165,7 +173,8 @@ popups.forEach(elementPopup => {
     });
 });
 
-
+popupView.setEventsListeners();
 listContainer.renderItems();
+
 
 

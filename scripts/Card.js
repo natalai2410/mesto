@@ -1,10 +1,12 @@
-import {popupImage, popupTitle, popupView, openModalWindow} from './index.js';
+//import {popupImage, popupTitle, popupView, openModalWindow} from './index.js';
+
 
 export default class Card {
-    constructor(link, name, templateSelector) {
+    constructor(link, name, templateSelector, handleOpenImage ) {
         this._name = name;
         this._link = link;
         this._cardSelector = templateSelector;
+        this._handleOpenImage = handleOpenImage;
     }
 
     _getTemplate() {
@@ -21,12 +23,12 @@ export default class Card {
         this._element = null;
     }
 
-    _handleOpenPopup() {
-        popupImage.src = this._link;
-        popupImage.alt = this._name;
-        popupTitle.textContent = this._name;
-        openModalWindow(popupView);
-    }
+    // _handleOpenPopup() {
+    //     popupImage.src = this._link;
+    //     popupImage.alt = this._name;
+    //     popupTitle.textContent = this._name;
+    //     openModalWindow(popupView);
+    // }
 
     _setEventListeners() {
         this._btnLikeCard.addEventListener("click", () =>  this._likeButtonClick());
@@ -36,7 +38,7 @@ export default class Card {
         });
 
         this._cardImage.addEventListener('click', () => {
-            this._handleOpenPopup(this._link,this._name );
+            this._handleOpenImage({ link: this._link, name: this._name });
         });
     }
 

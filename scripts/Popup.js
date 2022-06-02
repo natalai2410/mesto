@@ -1,7 +1,8 @@
 //отвечает за открытие и закрытие попапа.
 export default class Popup {
     constructor(popupSelector) {
-        this._popupSelector = popupSelector;
+        //this._popupSelector = popupSelector;
+        this._popup = document.querySelector(popupSelector);
     }
 
     //закрытия попапа клавишей Esc.
@@ -13,25 +14,25 @@ export default class Popup {
 
     //закрытия попапа оверлей
     _handleClosePopup = (e) => {
-        if (e.target === e.currentTarget || e.target.classList.contains('popup__close-btn')) {
+        if (e.target === e.currentTarget || e.target.classList.contains('popup__btn-close')) {
             this.close();
         }
     };
 
     close() {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
     }
 
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
     }
 
 
     //слушатель на кнопку
     setEventsListeners() {
-        this._popupSelector.addEventListener('click', this._handleClosePopup);
+        //находим в _popup кнопку и устанавливаем ей слушатель _handleClosePopup
+        this._popup.addEventListener('click', this._handleClosePopup);
     }
-
 }

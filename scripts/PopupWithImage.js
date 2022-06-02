@@ -1,11 +1,13 @@
-import Popup from "./Popup";
+
+import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup{
+    //{ linkSelector, nameSelector } передаем объект
     constructor(popupSelector, { linkSelector, nameSelector }) {
         super(popupSelector);
 
-    this._link= this._popupSelector.querySelector(linkSelector);
-    this._name = this._popupSelector.querySelector(nameSelector);
+    this._link= document.querySelector(linkSelector);
+    this._name = document.querySelector(nameSelector);
     }
 
     open = ({name, link}) => {
