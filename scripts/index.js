@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from "./Section.js";
 
 const initialCards = [
     {
@@ -60,27 +61,27 @@ const buttonAddCard = document.querySelector('.profile__btn-add');
 export const popupView = document.querySelector('.popup_view-card');
 export const popupImage = popupView.querySelector('.popup__image');
 export const popupTitle = popupView.querySelector('.popup__caption');
+
+
 const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
 const popups = document.querySelectorAll('.popup');
 
-const listContainer = document.querySelector('.places__list');
+const listContainer = new Section(
+    {
+        items: initialCards, //массив
+        renderer: (card) => {  //Содержит публичный метод, который отвечает за отрисовку всех элементов.
+            listContainer.addItem(addCard(card.link, card.name));
+        },
+    },
+    ".places__list"
+);
 
 const formAddValidator = new FormValidator(config, popupAddProfileForm);
 const formEditValidator = new FormValidator(config, popupEditProfileForm);
 
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
-
-function loadCards() {
-    initialCards.forEach((item) => {
-        listContainer.append(addCard(item.link, item.name));
-    });
-}
-
-window.onload = function () {
-    loadCards();
-};
 
 function addCard(link, name) {
     const card = new Card(link, name, '#template-place-item');
@@ -137,7 +138,10 @@ popupViewCloseButton.addEventListener('click', () => {
 
 popupAddProfileForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    listContainer.prepend(addCard(popupLink.value, popupPlace.value));
+    listContainer.addItem(
+        addCard(popupLink.value, popupPlace.value)
+    );
+
     closeModalWindow(popupAddCard);
 });
 
@@ -161,5 +165,7 @@ popups.forEach(elementPopup => {
     });
 });
 
+
+listContainer.renderItems();
 
 
