@@ -1,6 +1,3 @@
-//import {popupImage, popupTitle, popupView, openModalWindow} from './index.js';
-
-
 export default class Card {
     constructor(link, name, templateSelector, handleOpenImage ) {
         this._name = name;
@@ -22,13 +19,6 @@ export default class Card {
         this._element.closest('.place-item').remove();
         this._element = null;
     }
-
-    // _handleOpenPopup() {
-    //     popupImage.src = this._link;
-    //     popupImage.alt = this._name;
-    //     popupTitle.textContent = this._name;
-    //     openModalWindow(popupView);
-    // }
 
     _setEventListeners() {
         this._btnLikeCard.addEventListener("click", () =>  this._likeButtonClick());
