@@ -16,7 +16,7 @@ export default class Card {
     };
 
     _binButtonClick() {
-        this._element.closest('.place-item').remove();
+        this._element.remove();
         this._element = null;
     }
 
