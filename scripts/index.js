@@ -2,6 +2,8 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+
 
 const initialCards = [
     {
@@ -52,25 +54,22 @@ const inputName = popupEditProfile.querySelector('.popup__input_title');
 const inputJob = popupEditProfile.querySelector('.popup__input_job');
 const popupEditCloseButton = popupEditProfile.querySelector('.popup__btn-close');
 
-const popupAddCard = document.querySelector('.popup_new-card');
-const popupAddProfileForm = popupAddCard.querySelector('.popup__form');
-const popupPlace = popupAddCard.querySelector('.popup__input_place');
-const popupLink = popupAddCard.querySelector('.popup__input_link');
-const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
+
+const popupAddCard = new PopupWithForm('.popup_new-card', {formSelector: config.formSelector, inputSelector: config.inputSelector}, createNewCard ); //
+//const popupAddCard = document.querySelector('.popup_new-card');
+//const popupAddProfileForm = popupAddCard.querySelector('.popup__form');
+//const popupPlace = popupAddCard.querySelector('.popup__input_place');
+//const popupLink = popupAddCard.querySelector('.popup__input_link');
+//const popupAddCloseButton = popupAddCard.querySelector('.popup__btn-close');
+
 const buttonAddCard = document.querySelector('.profile__btn-add');
 
 // делаем в  объект
 const popupViewConfig = {linkSelector: '.popup__image',  nameSelector: '.popup__caption'};
-
+const popupView = new PopupWithImage('.popup_view-card', popupViewConfig);
 //export const popupView = document.querySelector('.popup_view-card');
- const popupView = new PopupWithImage('.popup_view-card', popupViewConfig); //что передать?
-
-
-
 // export const popupImage = popupView.querySelector('.popup__image');
 // export const popupTitle = popupView.querySelector('.popup__caption');
-
-
 // const popupViewCloseButton = popupView.querySelector('.popup__btn-close');
 
 const popups = document.querySelectorAll('.popup');
@@ -85,7 +84,8 @@ const listContainer = new Section(
     ".places__list"
 );
 
-const formAddValidator = new FormValidator(config, popupAddProfileForm);
+//const formAddValidator = new FormValidator(config, popupAddProfileForm);
+const formAddValidator = new FormValidator(config, popupAddCard.getForm());
 const formEditValidator = new FormValidator(config, popupEditProfileForm);
 
 formAddValidator.enableValidation();
@@ -126,32 +126,41 @@ function closeModalWindow(popup) {
 popupOpenButton.addEventListener('click', loadInputProfile);
 
 buttonAddCard.addEventListener('click', () => {
-    popupAddProfileForm.reset();
+    //popupAddProfileForm.reset();
     formAddValidator.resetValidation();
-
-    openModalWindow(popupAddCard);
+    popupAddCard.open();
+    //openModalWindow(popupAddCard);
 });
 
 popupEditCloseButton.addEventListener('click', () => {
     closeModalWindow(popupEditProfile);
 });
 
-popupAddCloseButton.addEventListener('click', () => {
-    closeModalWindow(popupAddCard);
-});
+// popupAddCloseButton.addEventListener('click', () => {
+//     closeModalWindow(popupAddCard);
+// });
 
 // popupViewCloseButton.addEventListener('click', () => {
 //     closeModalWindow(popupView);
 // });
 
-popupAddProfileForm.addEventListener('submit', (e) => {
+// popupAddProfileForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     listContainer.addItem(
+//         addCard(popupLink.value, popupPlace.value)
+//     );
+//
+//     closeModalWindow(popupAddCard);
+// });
+
+
+function createNewCard(e, inputsValues) {
     e.preventDefault();
     listContainer.addItem(
-        addCard(popupLink.value, popupPlace.value)
+        //из разметки по ID
+        addCard( inputsValues["input-link"], inputsValues["input-place"])
     );
-
-    closeModalWindow(popupAddCard);
-});
+}
 
 function pressEscKey(e) {
     const key = e.key;
@@ -175,6 +184,7 @@ popups.forEach(elementPopup => {
 
 popupView.setEventsListeners();
 listContainer.renderItems();
+popupAddCard.setEventsListeners();
 
 
 

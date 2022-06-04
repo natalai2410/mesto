@@ -7,10 +7,11 @@ export default class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._submitButtonSelector = config.submitButtonSelector;
 
-        this._form = form;
+        this._form = form; //в классе PopUpWithForm
 
         this._button = this._form.querySelector(this._submitButtonSelector);
-        this._inputs =  Array.from(this._form.querySelectorAll(this._inputSelector));
+        this._inputs =  Array.from(this._form.querySelectorAll(this._inputSelector)); ////в классе PopUpWithForm
+
     }
 
     _showError = (input) => {
@@ -52,7 +53,7 @@ export default class FormValidator {
 
     _setEventListeners = () => {
         this._form.addEventListener('input', (event) => {
-            this._handleFormInput(event.target);
+            this._handleFormInput(event.target); //в классе PopUpWithForm
         });
     };
 
