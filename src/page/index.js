@@ -62,13 +62,11 @@ function loadInputProfile() {
     popupEditProfile.open()
 }
 
-function saveInputProfile(e, inputsValues) {
-    e.preventDefault();
+function saveInputProfile(inputsValues) {
     userInfo.setUserInfo({name: inputsValues["input-title"], job: inputsValues["input-job"]});
 }
 
-function createNewCard(e, inputsValues) {
-    e.preventDefault();
+function createNewCard(inputsValues) {
     listContainer.addItem(
         addCard(inputsValues["input-link"], inputsValues["input-place"])
     );
