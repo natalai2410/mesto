@@ -11,7 +11,6 @@ export default class PopupWithImage extends Popup{
 
     open = ({name, link}) => {
         this._img.src = link;
-        //alt должен устанавливаться картинке, а не подписи.
         this._name.alt = name;
 
         this._name.textContent = name;
