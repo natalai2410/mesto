@@ -1,4 +1,4 @@
-import "./index.css"; //+
+// import "./index.css"; //+
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -17,6 +17,9 @@ import {
     inputJob
 
 } from "../utils/constants.js";
+
+import Api from "../components/Api.js";
+
 
 const popupEditProfile = new PopupWithForm('.popup_edit-profile', {
     formSelector: config.formSelector,
@@ -49,12 +52,31 @@ const formAddValidator = new FormValidator(config, popupAddCard.getForm());
 const formEditValidator = new FormValidator(config, popupEditProfile.getForm());
 
 
+const api = new Api({
+    baseUrl: 'https://nomoreparties.co/v1/cohort-43/users/me',
+    headers: {
+        authorization: '542751f4-2e93-4fad-82e3-6e5a73ce5b6d',
+        'Content-Type': 'application/json'
+    }
+});
+
+
+Promise.all([api.getUserInfo()])
+    .then(([userData]) => {
+        userInfo.setUserInfo({name: userData.name, job: userData.about});
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+
 function addCard(link, name) {
     const card = new Card(link, name, '#template-place-item', popupView.open);
     return card.generateCard();
 }
 
 function loadInputProfile() {
+
     const userObject = userInfo.getUserInfo();
     inputName.value = userObject.name;
     inputJob.value = userObject.job;
