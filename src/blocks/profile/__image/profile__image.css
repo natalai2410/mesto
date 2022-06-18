@@ -1,6 +1,8 @@
 .profile__image {
-	max-height: 120px;
+	min-height: 120px;
 	max-width: 120px;
 	border-radius: 50%;
 	object-fit: cover;
+	/*padding-right: 10px;*/
 }
+

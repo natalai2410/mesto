@@ -34,7 +34,7 @@ export const config = {
     submitButtonSelector: '.popup__btn-save'
 };
 
-export const profileConfig = {nameSelector: ".profile__title", jobSelector: ".profile__subtitle"};
+export const profileConfig = {nameSelector: ".profile__title", jobSelector: ".profile__subtitle", imgSelector: ".profile__image"};
 export const popupViewConfig = {linkSelector: '.popup__image', nameSelector: '.popup__caption'};
 
 export const popupOpenButton = document.querySelector('.profile__btn-edit');

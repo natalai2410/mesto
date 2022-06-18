@@ -7,7 +7,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
-    initialCards,
+    //initialCards,
     config,
     profileConfig,
     popupViewConfig,
@@ -19,6 +19,7 @@ import {
 } from "../utils/constants.js";
 
 import Api from "../components/Api.js";
+
 
 
 const popupEditProfile = new PopupWithForm('.popup_edit-profile', {
@@ -33,20 +34,26 @@ const popupAddCard = new PopupWithForm('.popup_new-card', {
 
 const userInfo = new UserInfo(
     profileConfig.nameSelector,
-    profileConfig.jobSelector);
+    profileConfig.jobSelector,
+    profileConfig.imgSelector
+    );
 
 const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
 
-const listContainer = new Section(
-    {
-        items: initialCards,
-        renderer: (card) => {
-            listContainer.addItem(addCard(card.link, card.name));
-        },
-    },
-    ".places__list"
-);
+// const listContainer = new Section(
+//     {
+//         items: initialCards,
+//         renderer: (card) => {
+//             listContainer.addItem(addCard(card.link, card.name));
+//         },
+//     },
+//     ".places__list"
+// );
+
+const listContainer = new Section((card) => {
+    listContainer.addItem(addCard(card.link, card.name));
+}, ".places__list");
 
 const formAddValidator = new FormValidator(config, popupAddCard.getForm());
 const formEditValidator = new FormValidator(config, popupEditProfile.getForm());
@@ -61,14 +68,14 @@ const api = new Api({
 });
 
 
-Promise.all([api.getUserInfo()])
-    .then(([userData]) => {
-        userInfo.setUserInfo({name: userData.name, job: userData.about});
+Promise.all([api.getUserInfo(), api.loadCard()])
+    .then(([userData, cards]) => {
+        userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar});
+        listContainer.renderItems(cards);
     })
     .catch((err) => {
         console.log(err);
     });
-
 
 function addCard(link, name) {
     const card = new Card(link, name, '#template-place-item', popupView.open);
@@ -94,7 +101,7 @@ function createNewCard(inputsValues) {
     );
 }
 
-listContainer.renderItems();
+//listContainer.renderItems();
 
 popupView.setEventsListeners();
 popupEditProfile.setEventsListeners();
