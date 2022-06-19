@@ -40,7 +40,7 @@ const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
 
 const listContainer = new Section((card) => {
-    listContainer.addItem(addCard(card.link, card.name));
+    listContainer.addItem(addCard(card.link, card.name, card.likes));
 }, ".places__list");
 
 const formAddValidator = new FormValidator(config, popupAddCard.getForm());
@@ -65,8 +65,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         console.log(err);
     });
 
-function addCard(link, name) {
-    const card = new Card(link, name, '#template-place-item', popupView.open);
+function addCard(link, name, likes) {
+    const card = new Card(link, name, likes, '#template-place-item', popupView.open);
     return card.generateCard();
 }
 
@@ -94,7 +94,7 @@ function createNewCard(event, inputsValues) {
     event.preventDefault();
     api.addNewCard(inputsValues["input-place"], inputsValues["input-link"])
         .then((card) => {
-            addCard(card.link, card.name);
+            addCard(card.link, card.name, card.likes);
             location.reload();
         })
         .catch((err) => {

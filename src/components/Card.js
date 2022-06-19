@@ -1,9 +1,11 @@
 export default class Card {
-    constructor(link, name, templateSelector, handleOpenImage ) {
+    constructor(link, name, likes , templateSelector, handleOpenImage ) {
         this._name = name;
         this._link = link;
         this._cardSelector = templateSelector;
         this._handleOpenImage = handleOpenImage;
+
+        this._likes = likes;
     }
 
     _getTemplate() {
@@ -28,7 +30,7 @@ export default class Card {
         });
 
         this._cardImage.addEventListener('click', () => {
-            this._handleOpenImage({ link: this._link, name: this._name });
+            this._handleOpenImage({ link: this._link, name: this._name, like: this._likes });
         });
     }
 
@@ -37,12 +39,15 @@ export default class Card {
 
         this._btnLikeCard = this._element.querySelector(".place-item__like");
         this._cardImage = this._element.querySelector(".place-item__image");
+        this._countLikesCard = this._element.querySelector(".place-item__count-like");
 
         this._setEventListeners();
 
         this._element.querySelector('.place-item__title').textContent = this._name;
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
+
+        this._countLikesCard.textContent = this._likes.length;
 
         return this._element;
     }

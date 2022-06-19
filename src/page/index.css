@@ -41,3 +41,7 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__btn-save/_disabled/popup__btn-save_disabled.css);
+
+
+@import url(../blocks/place-item/__count-like/place-item__count-like.css);
+@import url(../blocks/place-item/__content-like/place-item__content-like.css);
