@@ -7,7 +7,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import {
-    //initialCards,
     config,
     profileConfig,
     popupViewConfig,
@@ -41,16 +40,6 @@ const userInfo = new UserInfo(
 const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
 
-// const listContainer = new Section(
-//     {
-//         items: initialCards,
-//         renderer: (card) => {
-//             listContainer.addItem(addCard(card.link, card.name));
-//         },
-//     },
-//     ".places__list"
-// );
-
 const listContainer = new Section((card) => {
     listContainer.addItem(addCard(card.link, card.name));
 }, ".places__list");
@@ -60,7 +49,7 @@ const formEditValidator = new FormValidator(config, popupEditProfile.getForm());
 
 
 const api = new Api({
-    baseUrl: 'https://nomoreparties.co/v1/cohort-43/users/me',
+    baseUrl: '',
     headers: {
         authorization: '542751f4-2e93-4fad-82e3-6e5a73ce5b6d',
         'Content-Type': 'application/json'
@@ -68,7 +57,7 @@ const api = new Api({
 });
 
 
-Promise.all([api.getUserInfo(), api.loadCard()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
         userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar});
         listContainer.renderItems(cards);
@@ -100,8 +89,6 @@ function createNewCard(inputsValues) {
         addCard(inputsValues["input-link"], inputsValues["input-place"])
     );
 }
-
-//listContainer.renderItems();
 
 popupView.setEventsListeners();
 popupEditProfile.setEventsListeners();
