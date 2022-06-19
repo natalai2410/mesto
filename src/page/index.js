@@ -20,7 +20,6 @@ import {
 import Api from "../components/Api.js";
 
 
-
 const popupEditProfile = new PopupWithForm('.popup_edit-profile', {
     formSelector: config.formSelector,
     inputSelector: config.inputSelector
@@ -35,7 +34,7 @@ const userInfo = new UserInfo(
     profileConfig.nameSelector,
     profileConfig.jobSelector,
     profileConfig.imgSelector
-    );
+);
 
 const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
@@ -81,7 +80,7 @@ function loadInputProfile() { //+
 
 function saveInputProfile(event, inputsValues) {
     event.preventDefault();
-    api.sendUserInfo( inputsValues["input-title"], inputsValues["input-job"])
+    api.sendUserInfo(inputsValues["input-title"], inputsValues["input-job"])
         .then((userData) => {
             console.log(userData);
             userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar});
@@ -91,10 +90,16 @@ function saveInputProfile(event, inputsValues) {
         });
 }
 
-function createNewCard(inputsValues) {
-    listContainer.addItem(
-        addCard(inputsValues["input-link"], inputsValues["input-place"])
-    );
+function createNewCard(event, inputsValues) {
+    event.preventDefault();
+    api.addNewCard(inputsValues["input-place"], inputsValues["input-link"])
+        .then((card) => {
+            addCard(card.link, card.name);
+            location.reload();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 popupView.setEventsListeners();

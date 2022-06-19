@@ -4,15 +4,20 @@ export default class Api {
         this._headers = options.headers;
     }
 
+    _returnResult(result) {
+        if (result.ok) {
+            console.log(result);
+            return result.json();
+        }
+        return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
+    }
+
     getInitialCards() {
         return fetch('https://nomoreparties.co/v1/cohort-43/cards', {
             headers: this._headers,
         })
             .then(result => {
-                if (result.ok) {
-                    return result.json();
-                }
-                return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
+                return this._returnResult(result);
             })
     }
 
@@ -21,11 +26,8 @@ export default class Api {
             headers: this._headers,
         })
             .then(result => {
-            if (result.ok) {
-                return result.json();
-            }
-            return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
-        });
+                return this._returnResult(result);
+            })
     };
 
     sendUserInfo = (name, job) => {
@@ -33,17 +35,27 @@ export default class Api {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name:  name,
+                name: name,
                 about: job
             })
         })
             .then(result => {
-                if (result.ok) {
-                    console.log(result);
-                    return result.json();
-                }
-                return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
+                return this._returnResult(result);
             })
     };
-    
+
+
+    addNewCard = (name, link) => {
+         return fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                link: link
+            })
+        })
+            .then(result => {
+                return this._returnResult(result);
+            })
+    };
 }
