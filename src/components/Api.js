@@ -10,10 +10,9 @@ export default class Api {
         })
             .then(result => {
                 if (result.ok) {
-                    console.log(result);
                     return result.json();
                 }
-                return Promise.reject(`Ошибка: ${result.statusText}`);
+                return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
             })
     }
 
@@ -23,10 +22,28 @@ export default class Api {
         })
             .then(result => {
             if (result.ok) {
-                console.log(result);
                 return result.json();
             }
-            return Promise.reject(`Ошибка: ${result.statusText}`);
+            return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
         });
-    }
+    };
+
+    sendUserInfo = (name, job) => {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-43/users/me', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name:  name,
+                about: job
+            })
+        })
+            .then(result => {
+                if (result.ok) {
+                    console.log(result);
+                    return result.json();
+                }
+                return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
+            })
+    };
+    
 }

@@ -71,8 +71,7 @@ function addCard(link, name) {
     return card.generateCard();
 }
 
-function loadInputProfile() {
-
+function loadInputProfile() { //+
     const userObject = userInfo.getUserInfo();
     inputName.value = userObject.name;
     inputJob.value = userObject.job;
@@ -80,8 +79,16 @@ function loadInputProfile() {
     popupEditProfile.open()
 }
 
-function saveInputProfile(inputsValues) {
-    userInfo.setUserInfo({name: inputsValues["input-title"], job: inputsValues["input-job"]});
+function saveInputProfile(event, inputsValues) {
+    event.preventDefault();
+    api.sendUserInfo( inputsValues["input-title"], inputsValues["input-job"])
+        .then((userData) => {
+            console.log(userData);
+            userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar});
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function createNewCard(inputsValues) {

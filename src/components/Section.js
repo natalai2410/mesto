@@ -20,10 +20,4 @@ export  default class Section {
             this._renderer(item);
         });
     }
-
-
-            // this._arrayItems.forEach(item => {
-            //     this._renderer(item);
-            // });
-
 }
