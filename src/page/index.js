@@ -72,12 +72,36 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
         console.log(err);
     });
 
+
+
 function addCard(link, name, likes, _id, owner) {
     const card = new Card(link, name, likes, _id, owner,
         '#template-place-item',
         popupView.open,
-        popupDeleteCard.open,);
+        popupDeleteCard.open,
+        putLikeClick,
+        deleteLikeClick);
     return card.generateCard(userInfo.getId());
+}
+
+function putLikeClick(card) {
+    api.putLike(card.getID())
+        .then((data) => {
+            card.updateCardLike(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function deleteLikeClick(card) {
+    api.deleteLike(card.getID())
+        .then((data) => {
+            card.updateCardLike(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function loadInputProfile() { //+

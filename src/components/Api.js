@@ -66,7 +66,28 @@ export default class Api {
             headers: this._headers,
         })
             .then(result => {
-                console.log(`https://mesto.nomoreparties.co/v1/cohortId/cards/${cardId}`);
+                return this._returnResult(result);
+            })
+    };
+
+
+    putLike = (cardId) => {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}/likes`, {
+            method: 'PUT',
+            headers: this._headers,
+        })
+            .then(result => {
+                return this._returnResult(result);
+            })
+    };
+
+
+    deleteLike = (cardId) => {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}/likes`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+            .then(result => {
                 return this._returnResult(result);
             })
     };
