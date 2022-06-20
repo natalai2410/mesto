@@ -18,7 +18,7 @@ import {
 } from "../utils/constants.js";
 
 import Api from "../components/Api.js";
-
+import PopupConfirm from "../components/СonfirmPopup.js";
 
 const popupEditProfile = new PopupWithForm('.popup_edit-profile', {
     formSelector: config.formSelector,
@@ -38,6 +38,13 @@ const userInfo = new UserInfo(
 
 const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
+
+
+const popupDeleteCard = new PopupConfirm('.popup_delete-card',
+    config,
+    clickDeleteCard
+);
+
 
 const listContainer = new Section((card) => {
     listContainer.addItem(addCard(card.link, card.name, card.likes));
@@ -66,7 +73,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     });
 
 function addCard(link, name, likes) {
-    const card = new Card(link, name, likes, '#template-place-item', popupView.open);
+    const card = new Card(link, name, likes,
+        '#template-place-item',
+        popupView.open,
+        popupDeleteCard.open,);
     return card.generateCard();
 }
 
@@ -102,6 +112,12 @@ function createNewCard(event, inputsValues) {
         });
 }
 
+
+function clickDeleteCard(card) {
+    popupDeleteCard.close();
+    card.binButtonClick();
+}
+
 popupView.setEventsListeners();
 popupEditProfile.setEventsListeners();
 popupAddCard.setEventsListeners();
@@ -117,5 +133,5 @@ buttonAddCard.addEventListener('click', () => {
 });
 
 
-
+popupDeleteCard.setEventsListeners();
 

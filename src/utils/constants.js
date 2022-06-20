@@ -17,3 +17,4 @@ export const buttonAddCard = document.querySelector('.profile__btn-add');
 
 export const inputName = document.querySelector('.popup__input_title');
 export const inputJob = document.querySelector('.popup__input_job');
+

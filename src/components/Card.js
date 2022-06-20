@@ -1,9 +1,11 @@
 export default class Card {
-    constructor(link, name, likes , templateSelector, handleOpenImage ) {
+    constructor(link, name, likes , templateSelector, handleOpenImage, handleClickBin) {
         this._name = name;
         this._link = link;
         this._cardSelector = templateSelector;
         this._handleOpenImage = handleOpenImage;
+
+        this._handleClickBin = handleClickBin;
 
         this._likes = likes;
     }
@@ -17,20 +19,21 @@ export default class Card {
         this._btnLikeCard.classList.toggle('place-item__like_active');
     };
 
-    _binButtonClick() {
+    binButtonClick = () => {
         this._element.remove();
         this._element = null;
-    }
+    };
 
     _setEventListeners() {
         this._btnLikeCard.addEventListener("click", () =>  this._likeButtonClick());
 
         this._element.querySelector('.place-item__bin').addEventListener('click', () => {
-            this._binButtonClick();
+            //this._binButtonClick();
+            this._handleClickBin(this);
         });
 
         this._cardImage.addEventListener('click', () => {
-            this._handleOpenImage({ link: this._link, name: this._name, like: this._likes });
+            this._handleOpenImage({ link: this._link, name: this._name });
         });
     }
 
