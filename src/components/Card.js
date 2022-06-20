@@ -1,13 +1,26 @@
 export default class Card {
-    constructor(link, name, likes , templateSelector, handleOpenImage, handleClickBin) {
+    constructor( link, name, likes, _id, owner , templateSelector, handleOpenImage, handleClickBin) {
         this._name = name;
         this._link = link;
+
         this._cardSelector = templateSelector;
         this._handleOpenImage = handleOpenImage;
 
         this._handleClickBin = handleClickBin;
 
         this._likes = likes;
+
+        this._id = _id;
+        this._owner = owner;
+
+    }
+
+    getID() {
+        return this._id;
+    }
+
+    _getOwnerId() {
+        return this._owner._id;
     }
 
     _getTemplate() {
@@ -37,10 +50,11 @@ export default class Card {
         });
     }
 
-    generateCard() {
+    generateCard(userId) {
         this._element = this._getTemplate();
 
         this._btnLikeCard = this._element.querySelector(".place-item__like");
+        this._btnRemoveCard = this._element.querySelector(".place-item__bin");
         this._cardImage = this._element.querySelector(".place-item__image");
         this._countLikesCard = this._element.querySelector(".place-item__count-like");
 
@@ -51,6 +65,10 @@ export default class Card {
         this._cardImage.alt = this._name;
 
         this._countLikesCard.textContent = this._likes.length;
+
+        if (userId !== this._getOwnerId()) {
+            this._btnRemoveCard.classList.add("place-item__bin_disabled");
+        }
 
         return this._element;
     }

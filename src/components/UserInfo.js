@@ -11,10 +11,12 @@ export default class UserInfo {
         this._img = document.querySelector(this._imgSelector);
     }
 
-    setUserInfo({name, job, img}) {
+    setUserInfo({name, job, img,  _id}) {
         this._name.textContent = name;
         this._job.textContent = job;
         this._img.src = img;
+
+        this._id = _id;
     }
 
     getUserInfo() {
@@ -22,5 +24,9 @@ export default class UserInfo {
             name: this._name.textContent,
             job: this._job.textContent,
         };
+    }
+
+    getId() {
+        return this._id;
     }
 }

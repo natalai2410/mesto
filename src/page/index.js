@@ -47,7 +47,7 @@ const popupDeleteCard = new PopupConfirm('.popup_delete-card',
 
 
 const listContainer = new Section((card) => {
-    listContainer.addItem(addCard(card.link, card.name, card.likes));
+    listContainer.addItem(addCard(card.link, card.name, card.likes, card._id, card.owner));
 }, ".places__list");
 
 const formAddValidator = new FormValidator(config, popupAddCard.getForm());
@@ -65,19 +65,19 @@ const api = new Api({
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
-        userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar});
+        userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar, _id: userData._id});
         listContainer.renderItems(cards);
     })
     .catch((err) => {
         console.log(err);
     });
 
-function addCard(link, name, likes) {
-    const card = new Card(link, name, likes,
+function addCard(link, name, likes, _id, owner) {
+    const card = new Card(link, name, likes, _id, owner,
         '#template-place-item',
         popupView.open,
         popupDeleteCard.open,);
-    return card.generateCard();
+    return card.generateCard(userInfo.getId());
 }
 
 function loadInputProfile() { //+
@@ -104,7 +104,8 @@ function createNewCard(event, inputsValues) {
     event.preventDefault();
     api.addNewCard(inputsValues["input-place"], inputsValues["input-link"])
         .then((card) => {
-            addCard(card.link, card.name, card.likes);
+            // console.log(card.name);
+            addCard(card.link, card.name, card.likes,  card._id, card.owner);
             location.reload();
         })
         .catch((err) => {
@@ -114,8 +115,15 @@ function createNewCard(event, inputsValues) {
 
 
 function clickDeleteCard(card) {
-    popupDeleteCard.close();
-    card.binButtonClick();
+    api.deleteCard(card.getID())
+        .then(() => {
+            card.binButtonClick();
+            popupDeleteCard.close();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
 }
 
 popupView.setEventsListeners();

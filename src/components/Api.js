@@ -58,4 +58,16 @@ export default class Api {
                 return this._returnResult(result);
             })
     };
+
+
+    deleteCard = (cardId) => {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+            .then(result => {
+                console.log(`https://mesto.nomoreparties.co/v1/cohortId/cards/${cardId}`);
+                return this._returnResult(result);
+            })
+    };
 }
