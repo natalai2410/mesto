@@ -12,6 +12,7 @@ import {
     popupViewConfig,
     popupOpenButton,
     buttonAddCard,
+    popupEditAvatarButton,
     inputName,
     inputJob
 
@@ -36,15 +37,18 @@ const userInfo = new UserInfo(
     profileConfig.imgSelector
 );
 
+const popupAvatar = new PopupWithForm( '.popup_edit-avatar', {
+    formSelector: config.formSelector,
+    inputSelector: config.inputSelector
+},  saveAvatarProfile);
+
 const popupView = new PopupWithImage('.popup_view-card',
     popupViewConfig);
-
 
 const popupDeleteCard = new PopupConfirm('.popup_delete-card',
     config,
     clickDeleteCard
 );
-
 
 const listContainer = new Section((card) => {
     listContainer.addItem(addCard(card.link, card.name, card.likes, card._id, card.owner));
@@ -52,6 +56,7 @@ const listContainer = new Section((card) => {
 
 const formAddValidator = new FormValidator(config, popupAddCard.getForm());
 const formEditValidator = new FormValidator(config, popupEditProfile.getForm());
+const formEditAvatarValidator = new FormValidator(config, popupAvatar.getForm());
 
 
 const api = new Api({
@@ -62,17 +67,14 @@ const api = new Api({
     }
 });
 
-
 Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
-        userInfo.setUserInfo({name: userData.name, job: userData.about, img: userData.avatar, _id: userData._id});
+        userInfo.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar, _id: userData._id});
         listContainer.renderItems(cards);
     })
     .catch((err) => {
         console.log(err);
     });
-
-
 
 function addCard(link, name, likes, _id, owner) {
     const card = new Card(link, name, likes, _id, owner,
@@ -128,7 +130,6 @@ function createNewCard(event, inputsValues) {
     event.preventDefault();
     api.addNewCard(inputsValues["input-place"], inputsValues["input-link"])
         .then((card) => {
-            // console.log(card.name);
             addCard(card.link, card.name, card.likes,  card._id, card.owner);
             location.reload();
         })
@@ -136,7 +137,6 @@ function createNewCard(event, inputsValues) {
             console.log(err);
         });
 }
-
 
 function clickDeleteCard(card) {
     api.deleteCard(card.getID())
@@ -150,20 +150,42 @@ function clickDeleteCard(card) {
 
 }
 
+function saveAvatarProfile(event, inputsValues) {
+    event.preventDefault();
+    console.log(inputsValues["avatar-link"]);
+    api.changeAvatar(inputsValues["avatar-link"])
+        .then((userData) => {
+            userInfo.setUserInfo({avatar: userData.avatar});
+            popupAvatar.close();
+            location.reload();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function clickChangeAvatar() {
+    formEditValidator.resetValidation();
+    popupAvatar.open()
+}
+
 popupView.setEventsListeners();
 popupEditProfile.setEventsListeners();
 popupAddCard.setEventsListeners();
+popupAvatar.setEventsListeners();
 
 formAddValidator.enableValidation();
 formEditValidator.enableValidation();
+formEditAvatarValidator.enableValidation();
 
 popupOpenButton.addEventListener('click', loadInputProfile);
+popupEditAvatarButton.addEventListener('click', clickChangeAvatar);
 
 buttonAddCard.addEventListener('click', () => {
     formAddValidator.resetValidation();
     popupAddCard.open();
 });
 
-
 popupDeleteCard.setEventsListeners();
+
 

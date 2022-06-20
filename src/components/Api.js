@@ -91,4 +91,18 @@ export default class Api {
                 return this._returnResult(result);
             })
     };
+
+
+    changeAvatar = (avatar) => {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-43/users/me/avatar', {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatar,
+            }),
+        }).then(result => {
+            console.log(result);
+            return this._returnResult(result);
+        });
+    }
 }

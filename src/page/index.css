@@ -45,3 +45,8 @@
 
 @import url(../blocks/place-item/__count-like/place-item__count-like.css);
 @import url(../blocks/place-item/__content-like/place-item__content-like.css);
+
+@import url(../blocks/place-item/__bin/_disabled/place-item__bin_disabled.css);
+
+@import url(../blocks/profile/__user/profile__user.css);
+@import url(../blocks/profile/__overlay/profile__overlay.css);

@@ -16,7 +16,3 @@
 	cursor: pointer;
 	opacity: 0.5;
 }
-
-.place-item__bin_disabled {
-	display: none;
-}

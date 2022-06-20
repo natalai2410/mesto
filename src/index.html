@@ -14,8 +14,11 @@
 <main class="content">
 	<section class="profile">
 		<div class="profile__avatar">
-<!--			<img src="<%=require('./images/Jacques-Yves_Cousteau.png')%>" alt="Жак-Ив Кусто" class="profile__image">-->
+			<div class="profile__user">
 			<img src="" alt="" class="profile__image">
+			<div class="profile__overlay"></div>
+			</div>
+
 			<div class="profile__text">
 				<h1 class="profile__title ellipsis-block"></h1>
 				<button class="profile__btn-edit" type="button"
@@ -31,6 +34,7 @@
 	</section>
 </main>
 <footer class="footer">
+	<button class="btn-avatar-update" type="button">Обновить аватар</button>
 	<p class="footer__copyright">&copy; 2020 Mesto Russia</p>
 </footer>
 <div class="popup popup_new-card">
@@ -111,6 +115,27 @@
 		</form>
 	</div>
 </div>
+<div class="popup popup_edit-avatar">
+	<div class="popup__content popup__content_common">
+		<button class="popup__btn-close" type="button" aria-label="Выйти из попапа"></button>
+		<h2 class="popup__title">Обновить аватар</h2>
+		<form class="popup__form" name="popup-form" novalidate>
+			<label class="popup__field">
+				<input class="popup__input popup__input_avatar-link"
+				       type="url"
+				       name='avatar-link'
+				       placeholder="Ссылка на картинку"
+				       id="avatar-link"
+				       required>
+				<span class="popup__error"
+				      id="avatar-link-error"></span>
+			</label>
+			<button class="popup__btn-save" type="submit">Сохранить</button>
+		</form>
+	</div>
+</div>
+
+
 <template class="template" id="template-place-item">
 	<li class="place-item">
 		<button class="place-item__bin" type="button" aria-label="Корзина"></button>

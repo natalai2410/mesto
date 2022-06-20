@@ -1,8 +1,8 @@
 .profile__image {
-	min-height: 120px;
-	max-width: 120px;
+	height: 120px;
+	width: 120px;
 	border-radius: 50%;
 	object-fit: cover;
-	/*padding-right: 10px;*/
+	padding-right: 10px;
 }
 

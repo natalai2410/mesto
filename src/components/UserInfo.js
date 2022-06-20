@@ -8,13 +8,13 @@ export default class UserInfo {
 
 
         this._imgSelector = imgSelector;
-        this._img = document.querySelector(this._imgSelector);
+        this._avatar = document.querySelector(this._imgSelector);
     }
 
-    setUserInfo({name, job, img,  _id}) {
+    setUserInfo({name, job,  avatar,  _id}) {
         this._name.textContent = name;
         this._job.textContent = job;
-        this._img.src = img;
+        this._avatar.src = avatar;
 
         this._id = _id;
     }
