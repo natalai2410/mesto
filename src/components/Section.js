@@ -9,8 +9,6 @@ export default class Section {
     }
 
     renderItems(arrayItems) {
-        this._arrayItems = arrayItems;
-
         arrayItems.forEach(item => {
             this._renderer(item);
         });

@@ -74,7 +74,7 @@ const api = new Api({
 Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, cards]) => {
         userInfo.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar, _id: userData._id});
-        listContainer.renderItems(cards);
+        listContainer.renderItems(cards.reverse());
     })
     .catch((err) => {
         console.log(err);
@@ -125,6 +125,7 @@ function saveInputProfile(event, inputsValues) {
     api.sendUserInfo(inputsValues["input-title"], inputsValues["input-job"])
         .then((userData) => {
             userInfo.setUserInfo({name: userData.name, job: userData.about, avatar: userData.avatar});
+            popupEditProfile.close();
         })
 
         .finally(() => {
@@ -142,8 +143,8 @@ function createNewCard(event, inputsValues) {
 
     api.addNewCard(inputsValues["input-place"], inputsValues["input-link"])
         .then((card) => {
-            addCard(card.link, card.name, card.likes,  card._id, card.owner);
-            location.reload();
+            listContainer.addItem(addCard(card.link, card.name, card.likes,  card._id, card.owner));
+            popupAddCard.close();
         })
 
         .finally(() => {
@@ -175,7 +176,6 @@ function saveAvatarProfile(event, inputsValues) {
         .then((userData) => {
             userInfo.setUserInfo({avatar: userData.avatar});
             popupAvatar.close();
-            location.reload();
         })
 
         .finally(() => {
