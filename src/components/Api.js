@@ -6,14 +6,13 @@ export default class Api {
 
     _returnResult(result) {
         if (result.ok) {
-            console.log(result);
             return result.json();
         }
         return Promise.reject(`Упс... Что-то пошло не так: ${result.statusText}`);
     }
 
     getInitialCards() {
-        return fetch('https://nomoreparties.co/v1/cohort-43/cards', {
+        return fetch(`${this._baseUrl}cards`, {
             headers: this._headers,
         })
             .then(result => {
@@ -22,7 +21,7 @@ export default class Api {
     }
 
     getUserInfo = () => {
-        return fetch('https://nomoreparties.co/v1/cohort-43/users/me', {
+        return fetch(`${this._baseUrl}users/me`, {
             headers: this._headers,
         })
             .then(result => {
@@ -31,7 +30,7 @@ export default class Api {
     };
 
     sendUserInfo = (name, job) => {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-43/users/me', {
+        return fetch(`${this._baseUrl}users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -44,9 +43,8 @@ export default class Api {
             })
     };
 
-
     addNewCard = (name, link) => {
-         return fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
+         return fetch(`${this._baseUrl}cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -59,9 +57,8 @@ export default class Api {
             })
     };
 
-
     deleteCard = (cardId) => {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}`, {
+        return fetch(`${this._baseUrl}cards/${cardId}`, {
             method: 'DELETE',
             headers: this._headers,
         })
@@ -70,9 +67,8 @@ export default class Api {
             })
     };
 
-
     putLike = (cardId) => {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
             method: 'PUT',
             headers: this._headers,
         })
@@ -81,9 +77,8 @@ export default class Api {
             })
     };
 
-
     deleteLike = (cardId) => {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-43/cards/${cardId}/likes`, {
+        return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: this._headers,
         })
@@ -92,17 +87,16 @@ export default class Api {
             })
     };
 
-
     changeAvatar = (avatar) => {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-43/users/me/avatar', {
+        return fetch(`${this._baseUrl}users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar: avatar,
             }),
         }).then(result => {
-            console.log(result);
             return this._returnResult(result);
         });
-    }
+    };
+
 }

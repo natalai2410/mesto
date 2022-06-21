@@ -1,12 +1,12 @@
-
+export const baseUrl = 'https://nomoreparties.co/v1/cohort-43/';
 
 export const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible',
+    submitButtonSelector: '.popup__btn-save',
     inactiveButtonClass: 'popup__btn-save_disabled',
-    submitButtonSelector: '.popup__btn-save'
 };
 
 export const profileConfig = {nameSelector: ".profile__title", jobSelector: ".profile__subtitle", imgSelector: ".profile__image"};
