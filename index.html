@@ -3,10 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="page/index.css" rel="stylesheet">
-
+<!--	<link href="page/index.css" rel="stylesheet">-->
 	<title>Mesto</title>
-<script defer src="main.js"></script></head>
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 <body class="page">
 <header class="header">
 	<div class="logo"></div>
@@ -14,8 +13,10 @@
 <main class="content">
 	<section class="profile">
 		<div class="profile__avatar">
-<!--			<img src="a26195eaf2ddf116f3e2.png" alt="Жак-Ив Кусто" class="profile__image">-->
+			<div class="profile__user">
 			<img src="" alt="" class="profile__image">
+			<div class="profile__overlay"></div>
+			</div>
 			<div class="profile__text">
 				<h1 class="profile__title ellipsis-block"></h1>
 				<button class="profile__btn-edit" type="button"
@@ -102,17 +103,47 @@
 		<figcaption class="popup__caption"></figcaption>
 	</figure>
 </div>
+<div class="popup popup_delete-card">
+	<div class="popup__content popup__content_common ">
+		<button class="popup__btn-close" type="button" aria-label="Выйти из попапа"></button>
+		<h2 class="popup__title">Вы уверены?</h2>
+		<form class="popup__form" name="popup-form" novalidate>
+			<button class="popup__btn-save" type="submit">Да</button>
+		</form>
+	</div>
+</div>
+<div class="popup popup_edit-avatar">
+	<div class="popup__content popup__content_common">
+		<button class="popup__btn-close" type="button" aria-label="Выйти из попапа"></button>
+		<h2 class="popup__title">Обновить аватар</h2>
+		<form class="popup__form" name="popup-form" novalidate>
+			<label class="popup__field">
+				<input class="popup__input popup__input_avatar-link"
+				       type="url"
+				       name='avatar-link'
+				       placeholder="Ссылка на картинку"
+				       id="avatar-link"
+				       required>
+				<span class="popup__error"
+				      id="avatar-link-error"></span>
+			</label>
+			<button class="popup__btn-save" type="submit">Сохранить</button>
+		</form>
+	</div>
+</div>
 <template class="template" id="template-place-item">
 	<li class="place-item">
 		<button class="place-item__bin" type="button" aria-label="Корзина"></button>
 		<img src="#" class="place-item__image" alt="картинка_место_загрузка"/>
 		<div class="place-item__content">
 			<h2 class="place-item__title ellipsis-block"></h2>
-			<button class="place-item__like" type="button" aria-label="Лайк"></button>
+			<div class="place-item__content-like">
+				<button class="place-item__like" type="button" aria-label="Лайк"></button>
+				<p class="place-item__count-like">0</p>
+			</div>
 		</div>
 	</li>
 </template>
-<script type="module" src="page/index.js"></script>
-<!---->
+<!--<script type="module" src="page/index.js"></script>-->
 </body>
 </html>
