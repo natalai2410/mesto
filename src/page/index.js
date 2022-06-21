@@ -22,8 +22,6 @@ import {
 import Api from "../components/Api.js";
 import PopupConfirm from "../components/СonfirmPopup.js";
 
-
-
 const popupAddCard = new PopupWithForm('.popup_new-card', {
     formSelector: config.formSelector,
     inputSelector: config.inputSelector,
